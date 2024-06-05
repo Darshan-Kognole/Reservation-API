@@ -1,0 +1,44 @@
+package org.jsp.customer_order_app.Controller;
+
+import org.jsp.customer_order_app.Dto.FoodOrder;
+import org.jsp.customer_order_app.Dto.ResponseStructure;
+import org.jsp.customer_order_app.Service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+@RequestMapping("/api/orders")
+public class OrderController {
+	@Autowired
+	private OrderService os;
+	
+	@PostMapping("/{customer_id}")
+	public ResponseEntity<ResponseStructure<FoodOrder>> saveFoodOrder(@RequestBody FoodOrder order,
+			@PathVariable int customer_id){
+		return os.saveFoodOrder(order,customer_id);
+	}
+	
+	@GetMapping
+	public ResponseEntity<ResponseStructure<FoodOrder>> findById(@PathVariable int id){
+		return os.findById(id);
+	} 
+	
+	@PutMapping
+	public ResponseEntity<ResponseStructure<FoodOrder>> updateFoodOrder(@RequestBody FoodOrder order){
+		return os.updateFoodOrder(order);
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<ResponseStructure<FoodOrder>> deleteFoodOrder(int id){
+		return os.deleteFoodOrder(id);
+	}
+}

@@ -1,0 +1,5 @@
+package org.jsp.send_mail1.controller;
+
+public class MailSenderController {
+
+}

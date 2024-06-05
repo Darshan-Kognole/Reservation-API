@@ -1,0 +1,66 @@
+.userlogin{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* margin-right: 10px; */
+}
+.userlogin>form>h2{
+   color: rgb(252, 173, 27);
+}
+.userlogin>img{
+    height: 70vh;
+    /* background:red; */
+}
+.userlogin>form{
+    height: 300px;
+    width: 300px;
+    /* border-radius: 20px; */
+    /* color: white; */
+    /* box-shadow: 0px 0px 30px white; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 100px;
+    margin-top: 40px;
+}
+.userlogin>form>h2{
+    font-weight: 700;
+    
+}
+.userlogin>form>label{
+    margin-top: 15px;
+    font-weight: 600;
+}
+.userlogin>form>label>input{
+    width: 270px;
+    height: 30px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgb(126, 100, 28);
+    font-weight: 500;
+    font-size: 14PX;
+    color: rgb(255, 185, 56);
+}
+.userlogin>form>label>input::placeholder{
+    color: rgb(255, 185, 56);
+    font-size: 15px;
+    font-weight: 500;
+}
+.userlogin>form>button{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255, 206, 84);
+    box-shadow: 0px 0px 5px rgb(126, 100, 28);
+    /* background-color: rgb(255, 176, 31); */
+    font-weight: 600;
+}

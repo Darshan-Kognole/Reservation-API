@@ -1,0 +1,30 @@
+.landingpage{
+    width: 50%;
+    height: 300px;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; 
+    box-shadow: 0px 0px 20px grey;
+    border-radius: 20px;
+    text-align: center;
+}
+.landingpage>a>img{
+    height: 200px;
+    width: 200px;
+}
+.landingpage>a{
+    text-decoration: none;
+    transition: 1s;
+}
+
+.landingpage>a:hover{
+    transform: scale(1.2);
+}
+.landingpage>a>h2{
+    color: rgb(73, 73, 73);
+}
+

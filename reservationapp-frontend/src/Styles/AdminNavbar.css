@@ -1,0 +1,15 @@
+.adminNavbar{
+    background-color:#2f2f2f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 40px;
+    height: 70px;
+}
+.adminNavbar .logo h1{
+    color: white;
+    font-family: cursive;
+}
+.adminNavbar .logo sup{
+    color: #ff7d1a;
+}

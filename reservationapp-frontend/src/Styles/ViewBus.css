@@ -1,0 +1,19 @@
+.viewBus{
+    display: flex;
+    flex-direction: column;
+}
+.viewBus>.busdetails{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    height: 70px;
+    margin: 0px 20px;
+}
+.viewBus>.heading{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    height: 70px;
+    margin: 0px 20px;
+
+}

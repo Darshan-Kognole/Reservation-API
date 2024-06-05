@@ -1,0 +1,66 @@
+.addbus{
+    height: 80vh;
+    width: 100%;
+    background-color:#2f2f2f;
+    /* background-image: url(https://banner2.cleanpng.com/20190721/gaw/kisspng-bus-kallyanpur-car-transport-event-tickets-5d349632239900.6068438215637274101458.jpg);
+    background-size: fit; */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.addbus>img{
+    height: 350px;
+    width: 350px;
+    border-radius: 50%;
+}
+.addbus>form{
+    height: 400px;
+    width: 350px;
+    /* border: 1px solid white; */
+    box-shadow: 0px 0px 30px 15px #1a1a1a;
+    border-radius: 40px;
+    position: relative;
+    left: -100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.addbus>form>label>input{
+    margin-bottom: 20px;
+    height: 30px;
+    width: 250px;
+    background-color: #444444;
+    box-shadow:0px 0px 10px rgb(0, 0, 0);
+    border: 1px #ff7d1a;
+    border-radius: 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: cursive;
+}
+.addbus>form>label>input::placeholder{
+    color: rgb(211, 211, 211);
+    font-weight: 650;
+    font-size: 14px;
+}
+.addbus>form>label>input:focus{
+    outline: none;
+    box-shadow:0px 0px 8px 2px #ff7d1a;
+}
+.addbus>form>button{
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 10px;
+    background-color: #444444;
+    color:white;
+    font-weight: 650;
+    font-size: 14px;
+     box-shadow:0px 0px 20px rgb(0, 0, 0);
+}
+.addbus>form>button:hover{
+    box-shadow:0px 0px 10px 2px #ff7d1a;
+}

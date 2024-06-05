@@ -1,0 +1,60 @@
+.usersignup{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.usersignup>img{
+    height: 80vh;
+}
+.usersignup>form{
+    width: 400px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    line-height: 20px;
+    margin-right: 100px;
+    margin-top: 40px;
+}
+.usersignup>form>h2{
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: rgb(3, 152, 206);
+}
+.usersignup>form>label>input{
+    width: 270px;
+    height: 30px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgb(177, 160, 250);
+    font-weight: 500;
+    font-size: 14PX;
+    color: rgb(3, 164, 223);
+}
+.usersignup>form>label>input::placeholder {
+    color: rgb(2, 151, 206);
+    font-size: 15px;
+    font-weight: 500;
+}
+.usersignup>form>label{
+    margin-top: 15px;
+    font-weight: 600;
+}
+.usersignup>form>button{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(2, 151, 206);
+    box-shadow: 0px 0px 5px rgb(0, 69, 94);
+    /* background-color: rgb(255, 176, 31); */
+    font-weight: 600;
+    color: white;
+}
