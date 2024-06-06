@@ -12,6 +12,11 @@ import net.bytebuddy.utility.RandomString;
 import static org.jsp.reservationapi.util.ApplicationConstants.ADMIN_VERIFY_LINK;
 import static org.jsp.reservationapi.util.ApplicationConstants.USER_VERIFY_LINK;
 
+import java.util.Random;
+
+import static org.jsp.reservationapi.util.ApplicationConstants.ADMIN_RESET_PASSWORD_LINK;
+import static org.jsp.reservationapi.util.ApplicationConstants.USER_RESET_PASSWORD_LINK;
+
 @Service
 public class LinkGeneratorService {
 	@Autowired
@@ -32,4 +37,19 @@ public class LinkGeneratorService {
 		String siteUrl=request.getRequestURL().toString();
 		return siteUrl.replace(request.getServletPath(), USER_VERIFY_LINK + user.getToken());
 	}
+	
+	public String getResetPasswordLink(Admin admin,HttpServletRequest request) {
+		admin.setToken(RandomString.make(45));
+		adminDao.saveAdmin(admin);
+		String siteUrl=request.getRequestURL().toString();
+		return siteUrl.replace(request.getServletPath(),ADMIN_RESET_PASSWORD_LINK + admin.getToken());
+	}
+	
+	public String getResetPasswordLink(User user, HttpServletRequest request) {
+		user.setToken(RandomString.make(45));
+		userDao.saveUser(user);
+		String siteUrl=request.getRequestURL().toString();
+		return siteUrl.replace(request.getServletPath(), USER_RESET_PASSWORD_LINK + user.getToken());
+	}
+	
 }

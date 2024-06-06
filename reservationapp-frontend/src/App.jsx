@@ -8,6 +8,7 @@ import UserSignUp from './Component/UserSignUp';
 import AdminHomePage from './Component/AdminHomePage';
 import UserHomePage from './Component/UserHomePage';
 import PageNotFound from './Component/PageNotFound';
+import ResetPassword from './Component/ResetPassword';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route element={<UserSignUp/>} path='/usersignup'/>
         <Route element={<AdminHomePage/>} path='/adminhomepage/*'/>
         <Route element={<UserHomePage/>} path='/userhomepage'></Route>
+        <Route element={<ResetPassword/>} path='/reset-password'/>
       </Routes>
       </BrowserRouter>
     </div>

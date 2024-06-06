@@ -1,0 +1,16 @@
+package org.jsp.reservationapi.repository;
+
+import org.jsp.reservationapi.model.Bus;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import java.time.LocalDate;
+import java.util.List;
+
+public interface BusRepository extends JpaRepository<Bus, Long> {
+
+    @Query("SELECT b FROM Bus b WHERE b.from_location = :from_location AND b.to_location = :to_location AND b.date_of_departure = :date_of_departure")
+    List<Bus> findBuses(@Param("from_location") String from_location, 
+                        @Param("to_location") String to_location, 
+                        @Param("date_of_departure") LocalDate date_of_departure);
+}

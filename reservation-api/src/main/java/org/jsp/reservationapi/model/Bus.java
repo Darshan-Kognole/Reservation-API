@@ -30,7 +30,7 @@ public class Bus {
 	private int id;
 	@Column(nullable=false)
 	private String name;
-	@CreationTimestamp
+	@Column(nullable=false)
 	private LocalDate date_of_departure;
 	@Column(nullable=false,unique=false)
 	private String bus_number;

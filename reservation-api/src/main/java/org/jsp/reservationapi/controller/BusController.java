@@ -1,5 +1,6 @@
 package org.jsp.reservationapi.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.jsp.reservationapi.dto.BusRequest;
@@ -10,12 +11,14 @@ import org.jsp.reservationapi.service.BusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
@@ -40,8 +43,21 @@ public class BusController {
 		return busService.findById(id);
 	}
 	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<ResponseStructure<String>> deleteBus(@PathVariable int id){
+		return busService.deleteBus(id);
+	}
+	
 	@GetMapping
 	public ResponseEntity<ResponseStructure<List<Bus>>> findAll() {
 		return busService.findAll();
 	}
+	
+	@GetMapping("/findBuses")
+    public ResponseEntity<ResponseStructure<List<Bus>>> findBuses( @RequestParam String from_location,
+    		@RequestParam String to_location, @RequestParam String date_of_departure) {
+        
+        LocalDate departureDate = LocalDate.parse(date_of_departure);
+        return busService.findBuses(from_location, to_location, departureDate);
+    }
 }

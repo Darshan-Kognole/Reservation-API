@@ -20,6 +20,10 @@ public class AdminDao {
 		return adminRepository.findById(id);
 	}
 	
+	public Optional<Admin> findByEmail(String email){
+		return adminRepository.findByEmail(email);
+	}
+	
 	public Optional<Admin> verifyAdmin(long phone,String password){
 		return adminRepository.findByPhoneAndPassword(phone, password);
 	}

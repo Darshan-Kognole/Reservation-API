@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpServletRequest;
-import net.bytebuddy.utility.RandomString;
 
 @Service
 public class AdminService {
@@ -144,4 +143,32 @@ public class AdminService {
 		adminDao.saveAdmin(dbAdmin);
 		return "Your Account has been activated";
 	}
+	
+	public String forgotPassword(String email,HttpServletRequest request) {
+		Optional<Admin> recAdmin=adminDao.findByEmail(email);
+		if(recAdmin.isEmpty())
+			throw new AdminNotFoundException("Invalid email id");
+		Admin admin =recAdmin.get();
+		String resetPasswordLink=linkGeneratorService.getResetPasswordLink(admin, request);
+		emailConfiguration.setToAddress(email);
+		emailConfiguration.setText("Please click on the following link to reset your password " + resetPasswordLink);
+		emailConfiguration.setSubject("Reset your Password");
+		mailService.sendMail(emailConfiguration);
+		return "reset password link has been sent to entered mail id";
+	}
+	
+	public ResponseEntity<ResponseStructure<AdminResponse>> verifyLink(String token) {
+		Optional<Admin> recAdmin = adminDao.findByToken(token);
+		if(recAdmin.isEmpty())
+			throw new AdminNotFoundException("Link has been expired or it is invalid");
+		Admin dbAdmin=recAdmin.get();
+		dbAdmin.setToken(null);
+		adminDao.saveAdmin(dbAdmin);
+		ResponseStructure<AdminResponse> structure = new ResponseStructure<>();
+		structure.setData(mapToAdminResponse(dbAdmin));
+		structure.setMessage("Link verified successfull");
+		structure.setStatusCode(HttpStatus.OK.value());
+		return ResponseEntity.status(HttpStatus.OK).body(structure);
+	}
+	
 }

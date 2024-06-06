@@ -1,6 +1,6 @@
 package org.jsp.reservationapi.service;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +10,7 @@ import org.jsp.reservationapi.dto.BusRequest;
 import org.jsp.reservationapi.dto.BusResponse;
 import org.jsp.reservationapi.dto.ResponseStructure;
 import org.jsp.reservationapi.exception.AdminNotFoundException;
+import org.jsp.reservationapi.exception.BusNotFoundException;
 import org.jsp.reservationapi.exception.UserNotFoundException;
 import org.jsp.reservationapi.model.Admin;
 import org.jsp.reservationapi.model.Bus;
@@ -79,11 +80,12 @@ public class BusService {
 	public ResponseEntity<ResponseStructure<String>> deleteBus(int id){
 		Optional<Bus> recBus =busDao.findById(id);
 		if(recBus.isPresent()) {
+			Bus bus=recBus.get();
 			ResponseStructure<String> structure = new ResponseStructure<>();
+			busDao.deleteBus(bus.getId());
 			structure.setMessage("Bus Deleted Successfully");
 			structure.setData("Bus Deleted");
 			structure.setStatusCode(HttpStatus.OK.value());
-			busDao.deleteBus(id);
 			return ResponseEntity.status(HttpStatus.OK).body(structure);
 		}
 		throw new AdminNotFoundException("Admin Email or Password is invalid");
@@ -104,6 +106,17 @@ public class BusService {
 		ResponseStructure<List<Bus>> structure = new ResponseStructure<>();
 		structure.setData(busDao.findAll());
 		structure.setMessage("List of All Buses");
+		structure.setStatusCode(HttpStatus.OK.value());
+		return ResponseEntity.status(HttpStatus.OK).body(structure);
+	}
+	
+	public ResponseEntity<ResponseStructure<List<Bus>>> findBuses(String from, String to, LocalDate dateOfDeparture) {
+		ResponseStructure<List<Bus>> structure = new ResponseStructure<>();
+		List<Bus> buses = busDao.findBuses(from, to, dateOfDeparture);
+		if (buses.isEmpty())
+			throw new BusNotFoundException("No Buses for entered route on this Date");
+		structure.setData(buses);
+		structure.setMessage("List of Buses for entered route on this Date");
 		structure.setStatusCode(HttpStatus.OK.value());
 		return ResponseEntity.status(HttpStatus.OK).body(structure);
 	}
