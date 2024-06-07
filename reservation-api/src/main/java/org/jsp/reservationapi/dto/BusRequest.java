@@ -20,5 +20,6 @@ public class BusRequest {
 	@NotBlank(message = "to location is manadatory")
 	private String to_location;
 	private int no_of_seat;
+	private int cost_per_seat;
 	private Admin admin;
 }

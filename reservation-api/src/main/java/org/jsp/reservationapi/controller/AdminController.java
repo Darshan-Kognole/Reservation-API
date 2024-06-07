@@ -8,7 +8,6 @@ import org.jsp.reservationapi.dto.AdminResponse;
 import org.jsp.reservationapi.dto.ResponseStructure;
 import org.jsp.reservationapi.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import '../Styles/ViewBus.css'
+import { useNavigate } from 'react-router-dom'
 const ViewBus = () => {
     let [bus, setBus] = useState([])
 
@@ -24,16 +25,10 @@ const ViewBus = () => {
             alert("Cannot Remove bus")
         })
     }
-
-    // function editBus(bus){
-    //     axios.put(`http://localhost:8080/api/bus/${id}`)
-    //     .then((res)=>{
-    //         alert('Bus details Updated')
-    //     })
-    //     .catch((err)=>{
-    //         alert('Cannot updated some validation error')
-    //     })
-    // }
+    let navigate=useNavigate();
+    function editNavigate(id){
+        navigate(`/adminhomepage/editbus/${id}`)
+    }
 
     return (
         <div className='viewBus'>
@@ -55,7 +50,7 @@ const ViewBus = () => {
                     <p>{items.to_location}</p>
                     <p>{items.date_of_departure}</p>
                     <span>{items.bus_number}</span>
-                    <button className='btn btn-warning'>Edit</button>
+                    <button className='btn btn-warning' onClick={()=>{editNavigate(items.id)}}>Edit</button>
                     <button className='btn btn-danger' onClick={()=>{removeBus(items.id,items.bus_number)}}>Delete</button>
                 </div>
             ))}

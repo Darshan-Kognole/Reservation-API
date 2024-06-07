@@ -3,8 +3,6 @@ package org.jsp.reservationapi.controller;
 import org.jsp.reservationapi.dto.ResponseStructure;
 import org.jsp.reservationapi.dto.UserRequest;
 import org.jsp.reservationapi.dto.UserResponse;
-import org.jsp.reservationapi.model.Admin;
-import org.jsp.reservationapi.model.User;
 import org.jsp.reservationapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -56,5 +54,10 @@ public class UserController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<ResponseStructure<String>> deleteUser(@PathVariable(name="id") int id){
 		return userService.deleteUser(id);
+	}
+	
+	@GetMapping("/activate")
+	public String activate(@RequestParam String token) {
+		return userService.activate(token);
 	}
 }

@@ -10,12 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import jakarta.validation.ConstraintViolationException;
+import org.hibernate.exception.ConstraintViolationException;
 
 @RestControllerAdvice
 public class ReservationApiExceptionHandler {
@@ -46,11 +45,11 @@ public class ReservationApiExceptionHandler {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(structure);
 	}
 	
-//	@ExceptionHandler({ConstraintViolationException.class})
-//	@ResponseStatus(HttpStatus.BAD_REQUEST)
-//	public String handleConstraintViolationException(ConstraintViolationException ex) {
-//		return ex.getErrorMessage() + " " +ex.getCause();
-//	}
+	@ExceptionHandler({ ConstraintViolationException.class })
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public String handleConstraintViolationException(ConstraintViolationException ex) {
+		return ex.getErrorMessage() + " " + ex.getCause();
+	}
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -72,6 +71,16 @@ public class ReservationApiExceptionHandler {
 		structure.setData("Cannnot SignIn");
 		structure.setMessage(exception.getMessage());
 		structure.setStatusCode(HttpStatus.UNAUTHORIZED.value());
+		return structure;
+	}
+	
+	@ResponseStatus(value = HttpStatus.NOT_ACCEPTABLE)
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseStructure<String> handle(IllegalArgumentException exception) {
+		ResponseStructure<String> structure = new ResponseStructure<>();
+		structure.setData("Cannot Complete the Action");
+		structure.setMessage(exception.getMessage());
+		structure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
 		return structure;
 	}
 }

@@ -131,4 +131,15 @@ public class UserService {
 		return UserResponse.builder().id(user.getId()) .name(user.getName()).age(user.getAge()).phone(user.getPhone())
 				.email(user.getEmail()).gender(user.getGender()).password(user.getPassword()).build();
 	}
+	
+	public String activate(String token) {
+		Optional<User> recUser = userDao.findByToken(token);
+		if (recUser.isEmpty())
+			throw new UserNotFoundException("Invalid Token");
+		User dbUser = recUser.get();
+		dbUser.setStatus("ACTIVE");
+		dbUser.setToken(null);
+		userDao.saveUser(dbUser);
+		return "Your Account has been activated";
+	}
 }

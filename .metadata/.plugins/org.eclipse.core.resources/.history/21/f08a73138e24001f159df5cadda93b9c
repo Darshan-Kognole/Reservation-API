@@ -1,0 +1,9 @@
+@Repository
+public class TicketDao {
+	@Autowired
+	private TicketRepository ticketRepository;
+
+	public Ticket saveTicket(Ticket ticket) {
+		return ticketRepository.save(ticket);
+	}
+}

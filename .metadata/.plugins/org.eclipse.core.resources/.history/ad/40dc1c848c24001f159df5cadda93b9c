@@ -1,0 +1,8 @@
+package org.jsp.reservationapi.util;
+
+public class Snippet {
+	public static void main(String[] args) {
+		BOOKED, CANCELLED, EXPIRED;
+	}
+}
+

@@ -1,0 +1,8 @@
+package org.jsp.reservationapi.util;
+
+public class TicketStatus {
+	public static void main(String[] args) {
+		BOOKED, CANCELLED, EXPIRED;s
+	}
+}
+
